@@ -7,7 +7,7 @@ ori_dir = "supplier-data/images/"
 images = os.listdir(ori_dir)
 print(images)
 
-url = "http://104.155.153.214/upload/"
+url = "http://35.222.28.72/upload/"
 for image in images:
     filename, ext = os.path.splitext(image)
     outfile = filename + ".jpeg"

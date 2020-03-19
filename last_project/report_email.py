@@ -36,11 +36,11 @@ def load_data(directory):
     return data
 
 def process_data(data):
-    paragraph = ""
+    paragraph = []
 
     for item in data:
-        line = "name: {}<br/>weight: {} lbs<br/><br/>".format(item["name"], item["weight"])
-        paragraph += line
+        line = "name: {}<br/>weight: {} lbs".format(item["name"], item["weight"])
+        paragraph.append(line)
 
     return paragraph
 
@@ -48,9 +48,13 @@ def main(argv):
     directory = "supplier-data/descriptions/"
     data = load_data(directory)
 
-    pdf_file = "reports/processed.pdf"
-    if not os.path.exists("reports/"):
-        os.makedirs("reports/")
+    pdf_file = "tmp/processed.pdf"
+    if not os.path.exists("tmp/"):
+        os.makedirs("tmp/")
+    # on server
+    # pdf_file = "/tmp/processed.pdf"
+    # if not os.path.exists("/tmp/"):
+    #     os.makedirs("/tmp/")
     today = date.today().strftime("%B %d, %Y")
     title = "Processed Update on {}".format(today)
     body = process_data(data)
@@ -61,7 +65,7 @@ def main(argv):
     subject = "Upload Completed - Online Fruit Store"
     body = "All fruits are uploaded to our website successfully. A detailed list is attached to this email."
     message = emails.generate_email(sender, receiver, subject, body, pdf_file)
-    # emails.send_mail(message)
+    emails.send_email(message)
 
 if __name__ == "__main__":
     main(sys.argv)

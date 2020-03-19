@@ -6,7 +6,7 @@ import json
 import re
 
 directory = 'supplier-data/descriptions/'
-url = "http://104.155.153.214/fruits/"
+url = "http://35.222.28.72/fruits/"
 files =  os.listdir(directory)
 # print(files)
 
